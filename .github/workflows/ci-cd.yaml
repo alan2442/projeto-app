@@ -1,0 +1,23 @@
+name: CI/CD - Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env: 
+  IMAGE_NAME: projeto4:v1
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout codigo
+      uses: actions/checkout@v4
+
+
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3
+        with:
+        
