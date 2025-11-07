@@ -33,13 +33,17 @@ jobs:
       - name: Push Docker image
         run: docker push $IMAGE_NAME:$IMAGE_TAG
 
-      # Clonar o repositório de manifests
+      # Setup SSH
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      # # Clonar o repositório de manifests
       - name: Checkout manifests repo
-        uses: actions/checkout@v4
-        with:
-          repository: alan2442/projeto-manifests
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          path: manifests
+        run: git clone git@github.com:alan2442/projeto-manifests.git manifests
 
       # Atualizar a tag da imagem no deployment.yaml
       - name: Update image tag in manifests
