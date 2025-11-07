@@ -54,10 +54,11 @@ jobs:
           git push origin update-image-$IMAGE_TAG
 
       # Criar Pull Request
-      - name: Create Pull Request
+      - name: Create Pull Request in manifests repo
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          path: manifests
           title: "Atualiza imagem para $IMAGE_TAG"
           body: "Atualização automática via CI/CD"
           branch: update-image-$IMAGE_TAG
