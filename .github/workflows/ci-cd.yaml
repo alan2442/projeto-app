@@ -1,4 +1,4 @@
-name: CI/CD - Build and Push Docker Image
+name: CI/CD - Build, Push Docker Image & Update Manifests
 
 on:
   push:
@@ -32,3 +32,33 @@ jobs:
       # Push da imagem para Docker Hub
       - name: Push Docker image
         run: docker push $IMAGE_NAME:$IMAGE_TAG
+
+      # Clonar o repositório de manifests
+      - name: Checkout manifests repo
+        uses: actions/checkout@v4
+        with:
+          repository: seu-usuario/hello-manifests
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          path: manifests
+
+      # Atualizar a tag da imagem no deployment.yaml
+      - name: Update image tag in manifests
+        run: |
+          cd manifests
+          sed -i "s|image: .*|image: $IMAGE_NAME:$IMAGE_TAG|g" deployment.yaml
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout -b update-image-$IMAGE_TAG
+          git add deployment.yaml
+          git commit -m "Atualiza imagem para $IMAGE_TAG"
+          git push origin update-image-$IMAGE_TAG
+
+      # Criar Pull Request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Atualiza imagem para $IMAGE_TAG"
+          body: "Atualização automática via CI/CD"
+          branch: update-image-$IMAGE_TAG
+          base: main
