@@ -37,7 +37,7 @@ jobs:
       - name: Checkout manifests repo
         uses: actions/checkout@v4
         with:
-          repository: seu-usuario/hello-manifests
+          repository: alan2442/projeto-manifests
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           path: manifests
 
