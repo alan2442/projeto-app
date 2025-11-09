@@ -112,9 +112,9 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 ```kubectl config view -o jsonpath='{range .clusters[*]}{.name}{" => "}{.cluster.server}{"\n"}{end}'```
 
-2 - configure no arquivo kubeconfig as informações do cluster chamado rancher-desktop, definindo o endereço do servidor da API Kubernetes (API Server):
+2 - configure no arquivo kubeconfig as informações do cluster, definindo o endereço do servidor da API Kubernetes (API Server), coloque o nome do cluster e o link do server nesse código:
 
-``` kubectl config set-cluster rancher-desktop --server=(linkServer)```
+``` kubectl config set-cluster (nomeCluster) --server=(linkServer)```
 
 3 - defina o contexto ativo no kubectl com o comando: 
 
@@ -124,11 +124,11 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 ``` kubectl port-forward svc/argocd-server -n argocd 8081:443 ```
 
-5 - Mantenha o port-forward e abra uma nova aba no terminal para pegar a senha do admin com o seguinte código:
+5 - Mantenha o port-forward e abra uma nova aba no terminal para pegar a senha do admin e copiar, utilize o seguinte código:
 
 ``` kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo ```
 
-6 - Faça login no argoCD, digite:
+6 - Faça login no argoCD utilizando a senha copiada, digite:
 
 ``` argocd login localhost:8081 --username admin --password <SENHA> ``` 
 
@@ -147,9 +147,9 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 ```argocd cluster list```
 
-11 - Copie o server do cluster adicionado e depois vá para o seu repositório projeto-manifests e copie o link dele
+11 - Copie e guarde o link do server do cluster adicionado e depois vá para o seu repositório projeto-manifests e copie o link do repositorio
 
-12 - Coloque o server e o link do repositório nesse código e depois cole no bash para criar a aplicação chamada projeto-app:
+12 - Coloque o link do server e o link do repositório nesse código e depois cole no bash para criar a aplicação chamada projeto-app:
 
 ```argocd app create projeto-app --repo (seuRepositorio) --path . --dest-server (linkServeridor) --dest-namespace default ```
 
