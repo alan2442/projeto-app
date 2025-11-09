@@ -95,4 +95,68 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 !!!! foto do service
 
+## Etapa 4 - Criar o APP no argocd
+
+1 - Encontre o cluster que você está utilizando e salve o link do server, digite o seguinte comando para encontrar:
+
+```kubectl config view -o jsonpath='{range .clusters[*]}{.name}{" => "}{.cluster.server}{"\n"}{end}'```
+
+2 - configure no arquivo kubeconfig as informações do cluster chamado rancher-desktop, definindo o endereço do servidor da API Kubernetes (API Server):
+
+``` kubectl config set-cluster rancher-desktop --server=(linkServer)```
+
+3 - defina o contexto ativo no kubectl com o comando: 
+
+```kubectl config use-context (nomeCLuster)```
+
+4 - crie um túnel local(port-forward) entre a sua máquina e o serviço do Argo CD:
+
+``` kubectl port-forward svc/argocd-server -n argocd 8081:443 ```
+
+5 - Mantenha o port-forward e abra uma nova aba no terminal para pegar a senha do admin com o seguinte código:
+
+``` kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo ```
+
+6 - Faça login no argoCD, digite:
+
+``` argocd login localhost:8081 --username admin --password <SENHA> ``` 
+
+7 - Você pode acessar o argoCD no navegador digitando: ```localhost:8081```
+
+8 - Adicione o seu cluster ao argocd:
+
+```argocd cluster add nomeCluster```
+
+9 - Você pode visualizar os seus cluster adicionados com o comando:
+
+```argocd cluster list```
+
+10 - Copie o server do cluster adicionado e depois vá para o seu repositório projeto-manifests e copie o link dele
+
+11 - Coloque o server e o link do repositório nesse código e depois cole no bash para criar a aplicação chamada projeto-app:
+
+```argocd app create projeto-app --repo (seuRepositorio) --path . --dest-server (linkServeridor) --dest-namespace default ```
+
+12 - Veja os detalhes da aplicação com o comando:
+
+```argocd app get (nomeApp) ```
+
+13 - Sincronize a aplicação (aplicar os manifests no cluster):
+
+``` argocd app sync (nomeApp) ```
+
+14 - Encontre o serviço da sua aplicação, digite o seguinte comando para encontrar:
+
+```kubectl get services -n default```
+
+15 -  Depois de encontrar, crie um túnel local(port-forward) entre a sua máquina e o serviço do Argo CD:
+kubectl port-forward svc/(nomeServiço) -n default 8080:80
+
+16 - Entre no site digitando no navegador o endereço:
+
+```localhost:8080```
+
+!!!! imagem da aplicação funcionando
+
+
 
