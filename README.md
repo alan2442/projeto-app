@@ -90,7 +90,7 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 !!!! foto do deploy key no repositorio projeto-manifests
 
-8 - Vá no repositório projeto-app e entre no arquivo ci_cd.yaml que está na pasta workflows e cole escreve esse código dentro:
+8 - Vá no repositório projeto-app e entre no arquivo ci_cd.yaml que está na pasta workflows e escreva esse código dentro:
 
 !!!! foto do workflow
 
