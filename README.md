@@ -21,7 +21,7 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 • Python 3 e Docker instalados
 
-## Etapa 1
+## Etapa 1 - Criar a aplicação FastAPI
 1 - Crie dois repositórios no seu git hub chamados de: projeto-app e projeto-manifests
 
 2 - no repositório projeto-app crie os seguintes arquivos: 
@@ -35,3 +35,9 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 5 - dentro do arquivo main.py digite o seguinte código:
 
 !!!! foto do codigo de main. py
+
+6- dentro do arquivo requirements.txt digite: ```fastapi uvicorn```
+
+7 - dentro do arquivo Dockerfile digite:
+
+!!!! foto do arquivo dockerfile
