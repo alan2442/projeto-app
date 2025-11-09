@@ -20,3 +20,8 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 • Git instalado 
 
 • Python 3 e Docker instalados
+
+## Etapa 1
+1 = Crie dois repositórios no seu git hub chamados de: projeto-app e projeto-manifests
+2 - no repositório projeto-app crie os seguintes arquivos: 
+```main.py, requeriments.txt e Dockerfile```
