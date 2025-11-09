@@ -23,8 +23,11 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 ## Etapa 1
 1 - Crie dois repositórios no seu git hub chamados de: projeto-app e projeto-manifests
+
 2 - no repositório projeto-app crie os seguintes arquivos: 
 
 ```main.py, requeriments.txt e Dockerfile```
+
 3 - Crie uma pasta chamada .github e dentro dela crie uma pasta chamada workflows
+
 4 - Dentro da pasta workflows crie o arquivo ```ci-cd.yaml```
