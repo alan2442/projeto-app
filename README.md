@@ -59,6 +59,16 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 ```cat ~/.ssh/ci_cd.pub = ESTA É A CHAVE PÚBLICA (pode ser adicionada ao GitHub)```
 
+3 - Clique na sua foto de perfil e vá em Settings → Developer Settings → Personal acess tokens → Tokens(classic)
+
+4 - clique em "Generate new token"
+
+6 - Escolha um nome para o token e escolha os repositórios que deseja acesso(Ex: projeto-app e projeto-manifests)
+
+7 - Escolhas as permissões "Contents" e "pull requests" e mude elas para Read and Write
+
+8 - Logo após crie o token e guarde o codigo do token
+
 3 - Entre no seu repositório projeto-app
 
 4 - Vá em Settings → Secrets and variables → Actions e adicione:
@@ -68,6 +78,7 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 | DOCKER_USERNAME	         | seu usuário Docker Hub     
 | DOCKER_PASSWORD          | token de acesso Docker Hub
 | SSH_PRIVATE_KEY          | chave privada para acesso ao repositório projeto-manifests (para o push) 
+| MANIFESTS_PAT            | token criado
 
 !!!! foto das chaves criadas no git hub
 
@@ -123,36 +134,41 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 7 - Você pode acessar o argoCD no navegador digitando: ```localhost:8081```
 
+!!!! imagem da tela do argocd no navegador
+
 8 - Adicione o seu cluster ao argocd:
 
 ```argocd cluster add nomeCluster```
 
-9 - Você pode visualizar os seus cluster adicionados com o comando:
+9 - Adicione o repositório Git ao ArgoCD, altere esse código colocando seu nome do usuário github, seu token criado anteriormente e o seu repositório git:
+```argocd repo add https://nomeusuario-GitHub:TOKEN@github.com/nomeusuario-GitHub/repositorio-manifests.git --username nomeusuario-GitHub --password TOKEN --name repositorio-manifests```
+
+10 - Você pode visualizar os seus cluster adicionados com o comando:
 
 ```argocd cluster list```
 
-10 - Copie o server do cluster adicionado e depois vá para o seu repositório projeto-manifests e copie o link dele
+11 - Copie o server do cluster adicionado e depois vá para o seu repositório projeto-manifests e copie o link dele
 
-11 - Coloque o server e o link do repositório nesse código e depois cole no bash para criar a aplicação chamada projeto-app:
+12 - Coloque o server e o link do repositório nesse código e depois cole no bash para criar a aplicação chamada projeto-app:
 
 ```argocd app create projeto-app --repo (seuRepositorio) --path . --dest-server (linkServeridor) --dest-namespace default ```
 
-12 - Veja os detalhes da aplicação com o comando:
+13 - Veja os detalhes da aplicação com o comando:
 
 ```argocd app get (nomeApp) ```
 
-13 - Sincronize a aplicação (aplicar os manifests no cluster):
+14 - Sincronize a aplicação (aplicar os manifests no cluster):
 
 ``` argocd app sync (nomeApp) ```
 
-14 - Encontre o serviço da sua aplicação, digite o seguinte comando para encontrar:
+15 - Encontre o serviço da sua aplicação, digite o seguinte comando para encontrar:
 
 ```kubectl get services -n default```
 
-15 -  Depois de encontrar, crie um túnel local(port-forward) entre a sua máquina e o serviço do Argo CD:
+16 -  Depois de encontrar, crie um túnel local(port-forward) entre a sua máquina e o serviço do Argo CD:
 kubectl port-forward svc/(nomeServiço) -n default 8080:80
 
-16 - Entre no site digitando no navegador o endereço:
+17 - Entre no site digitando no navegador o endereço:
 
 ```localhost:8080```
 
