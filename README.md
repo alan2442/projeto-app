@@ -49,9 +49,18 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 ```docker run -p 8000:8000 projeto-app```
 
 ## Etapa 2 - Criar o GitHub Actions(CI/CD)
-1 - Entre no seu repositório projerto-app
+1 - Gere uma chave SSH com o seguinte comando:
+```ssh-keygen -t ed25519 -C "github-actions@yourdomain" -f ~/.ssh/ci_cd -N ""```
 
-2 - Vá em Settings → Secrets and variables → Actions e adicione:
+2 - anote a sua chave pública e privada, digite o seguinte comando para encontra-las:
+
+```cat ~/.ssh/ci_cd = ESTA É A CHAVE PRIVADA (NÃO COMPARTILHAR)```
+
+```cat ~/.ssh/ci_cd.pub = ESTA É A CHAVE PÚBLICA (pode ser adicionada ao GitHub)```
+
+3 - Entre no seu repositório projerto-app
+
+4 - Vá em Settings → Secrets and variables → Actions e adicione:
 
 | Nome         | Valor             
 |----------------|----------------|
