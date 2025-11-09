@@ -56,7 +56,7 @@ jobs:
       - name: Create Pull Request in manifests repo
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.MANIFESTS_PAT }}
           path: manifests
           title: "Atualiza imagem para $IMAGE_TAG"
           body: "Atualização automática via CI/CD"
