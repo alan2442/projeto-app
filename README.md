@@ -41,3 +41,21 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 7 - dentro do arquivo Dockerfile digite:
 
 !!!! foto do arquivo dockerfile
+
+8 - Teste localmente digite no bash os comandos:
+
+```docker build -t projeto-app:latest . ```
+
+```docker run -p 8000:8000 projeto-app```
+
+## Etapa 2 - Criar o GitHub Actions(CI/CD)
+1 - Entre no seu repositório projerto-app
+
+2 - Vá em Settings → Secrets and variables → Actions e adicione:
+
+| Nome         | Valor             
+|----------------|----------------|
+| DOCKER_USERNAME	         | seu usuário Docker Hub     
+| DOCKER_PASSWORD          | token de acesso Docker Hub
+| SSH_PRIVATE_KEY          | chave privada para acesso ao repositório projeto-manifests (para o push) 
+
