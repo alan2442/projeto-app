@@ -34,13 +34,13 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 5 - dentro do arquivo main.py digite o seguinte código:
 
-!!!! foto do codigo de main. py
+![foto do main.py](fotosProjeto4/codigoMain.png)
 
 6- dentro do arquivo requirements.txt digite: ```fastapi uvicorn```
 
 7 - dentro do arquivo Dockerfile digite:
 
-!!!! foto do arquivo dockerfile
+![foto do dockerfile](fotosProjeto4/codigoDockerfile.png)
 
 8 - Teste localmente digite no bash os comandos:
 
@@ -80,7 +80,7 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 | SSH_PRIVATE_KEY          | chave privada para acesso ao repositório projeto-manifests (para o push) 
 | MANIFESTS_PAT            | token criado
 
-!!!! foto das chaves criadas no git hub
+![foto das chaves secretas](fotosProjeto4/fotosSecretsKeys.png)
 
 11 - Adicione a chave pública ao repositório projeto-manifests:
 
@@ -88,11 +88,12 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 13 - cole o conteudo da chave pública (ci_cd.pub)
 
-!!!! foto do deploy key no repositorio projeto-manifests
+![foto do deploy key](fotosProjeto4/fotoDeployKey.png)
 
 14 - Vá no repositório projeto-app e entre no arquivo ci_cd.yaml que está na pasta workflows e escreva esse código dentro:
 
-!!!! foto do workflow
+![foto do workflow](fotosProjeto4/fotoWorkflow1.png)
+![foto do workflow](fotosProjeto4/fotoWorkflow2.png)
 
 ## Etapa 3 - Criando o Deployment e o Service
 
@@ -100,11 +101,11 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 2 - dentro de deployment.yaml digite:
 
-!!!! foto do deployment
+![foto do deployment](fotosProjeto4/codigoDeployment.png)
 
 3 - dentro de service.yaml digite:
 
-!!!! foto do service
+![foto do service](fotosProjeto4/codigoService.png)
 
 ## Etapa 4 - Criar o APP no argocd
 
@@ -134,7 +135,7 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 7 - Você pode acessar o argoCD no navegador digitando: ```localhost:8081```
 
-!!!! imagem da tela do argocd no navegador
+![foto do argocd](fotosProjeto4/fotoArgoCD.png)
 
 8 - Adicione o seu cluster ao argocd:
 
