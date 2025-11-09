@@ -7,7 +7,7 @@ on:
 
 env:
   IMAGE_NAME: alan2442/projeto4
-  IMAGE_TAG: v6
+  IMAGE_TAG: ${{ github.sha }}  # usa o SHA do commit como tag única
 
 jobs:
   build-and-push:
@@ -41,20 +41,16 @@ jobs:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           path: manifests
 
-      # Atualizar a tag da imagem no deployment.yaml
+      # Atualizar deployment.yaml
       - name: Update image tag in manifests
         run: |
           cd manifests
           sed -i "s|\(image:\s*\).*|\1$IMAGE_NAME:$IMAGE_TAG|g" deployment.yaml
-          echo "Resultado do diff:"
-          git diff
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git checkout -B update-image-$IMAGE_TAG
           git add deployment.yaml
           git commit -m "Atualiza imagem para $IMAGE_TAG" || echo "Nada para commitar"
-          git push origin update-image-$IMAGE_TAG --force || echo "Nada para enviar"
-
+          git push origin HEAD:update-image-$IMAGE_TAG --force
 
       # Criar Pull Request
       - name: Create Pull Request in manifests repo
