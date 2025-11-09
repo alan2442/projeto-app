@@ -69,9 +69,9 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 8 - Logo após crie o token e guarde o codigo do token
 
-3 - Entre no seu repositório projeto-app
+9 - Entre no seu repositório projeto-app
 
-4 - Vá em Settings → Secrets and variables → Actions e adicione:
+10 - Vá em Settings → Secrets and variables → Actions e adicione:
 
 | Nome         | Valor             
 |----------------|----------------|
@@ -82,15 +82,15 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 !!!! foto das chaves criadas no git hub
 
-5 - Adicione a chave pública ao repositório projeto-manifests:
+11 - Adicione a chave pública ao repositório projeto-manifests:
 
-6 - Entre no repositório e vá em Settings → Deploy keys → Add deploy key
+12 - Entre no repositório e vá em Settings → Deploy keys → Add deploy key
 
-7 - cole o conteudo da chave pública (ci_cd.pub)
+13 - cole o conteudo da chave pública (ci_cd.pub)
 
 !!!! foto do deploy key no repositorio projeto-manifests
 
-8 - Vá no repositório projeto-app e entre no arquivo ci_cd.yaml que está na pasta workflows e escreva esse código dentro:
+14 - Vá no repositório projeto-app e entre no arquivo ci_cd.yaml que está na pasta workflows e escreva esse código dentro:
 
 !!!! foto do workflow
 
