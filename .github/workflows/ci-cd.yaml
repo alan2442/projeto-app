@@ -60,5 +60,5 @@ jobs:
           path: manifests
           title: "Atualiza imagem para $IMAGE_TAG"
           body: "Atualização automática via CI/CD"
-          branch: update-image-$IMAGE_TAG
+          branch: update-image-${{ env.IMAGE_TAG }}
           base: main
