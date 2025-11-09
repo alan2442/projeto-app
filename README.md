@@ -49,6 +49,7 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 ```docker run -p 8000:8000 projeto-app```
 
 ## Etapa 2 - Criar o GitHub Actions(CI/CD)
+
 1 - Gere uma chave SSH com o seguinte comando:
 ```ssh-keygen -t ed25519 -C "github-actions@yourdomain" -f ~/.ssh/ci_cd -N ""```
 
@@ -58,7 +59,7 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 ```cat ~/.ssh/ci_cd.pub = ESTA É A CHAVE PÚBLICA (pode ser adicionada ao GitHub)```
 
-3 - Entre no seu repositório projerto-app
+3 - Entre no seu repositório projeto-app
 
 4 - Vá em Settings → Secrets and variables → Actions e adicione:
 
@@ -67,4 +68,31 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 | DOCKER_USERNAME	         | seu usuário Docker Hub     
 | DOCKER_PASSWORD          | token de acesso Docker Hub
 | SSH_PRIVATE_KEY          | chave privada para acesso ao repositório projeto-manifests (para o push) 
+
+!!!! foto das chaves criadas no git hub
+
+5 - Adicione a chave pública ao repositório projeto-manifests:
+
+6 - Entre no repositório e vá em Settings → Deploy keys → Add deploy key
+
+7 - cole o conteudo da chave pública (ci_cd.pub)
+
+!!!! foto do deploy key no repositorio projeto-manifests
+
+8 - Vá no repositório projeto-app e entre no arquivo ci_cd.yaml que está na pasta workflows e cole escreve esse código dentro:
+
+!!!! foto do workflow
+
+## Etapa 3 - Criando o Deployment e o Service
+
+1 - Entre no repositório projeto-manifests e crie dois arquivos: ```deployment.yaml e service.yaml  ```
+
+2 - dentro de deployment.yaml digite:
+
+!!!! foto do deployment
+
+3 - dentro de service.yaml digite:
+
+!!!! foto do service
+
 
