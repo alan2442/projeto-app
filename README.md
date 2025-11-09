@@ -31,3 +31,7 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 3 - Crie uma pasta chamada .github e dentro dela crie uma pasta chamada workflows
 
 4 - Dentro da pasta workflows crie o arquivo ```ci-cd.yaml```
+
+5 - dentro do arquivo main.py digite o seguinte código:
+
+!!!! foto do codigo de main. py
