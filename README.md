@@ -211,4 +211,21 @@ ________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________________________________________
 
 
+# Conclusão do Projeto
+
+Este projeto demonstrou com sucesso a implementação de um pipeline completo de CI/CD utilizando GitHub Actions, Docker Hub e ArgoCD para uma aplicação FastAPI simples executando em um cluster Kubernetes local via Rancher Desktop.
+
+Durante o desenvolvimento, foram automatizadas todas as etapas do ciclo de vida da aplicação:
+
+- Integração Contínua (CI): a cada push no repositório da aplicação, o GitHub Actions executa o build da imagem Docker e publica automaticamente no Docker Hub.
+
+- Entrega Contínua (CD): o pipeline também atualiza o repositório de manifestos do ArgoCD com a nova tag da imagem, garantindo que o ambiente Kubernetes reflita sempre a versão mais recente da aplicação.
+
+- Implantação Contínua (ArgoCD): o ArgoCD monitora o repositório de manifestos e aplica automaticamente as alterações no cluster, mantendo o ambiente sempre sincronizado com o estado desejado versionado no Git.
+
+Com isso, o fluxo de trabalho se torna totalmente automatizado — basta modificar o código da aplicação (por exemplo, alterando a mensagem do endpoint /) e a nova versão é construída, enviada, atualizada e executada automaticamente no cluster Kubernetes local.
+
+O projeto consolida boas práticas de DevOps, como versionamento declarativo, automação de deploy, e observabilidade do estado da aplicação, proporcionando um exemplo completo e funcional de pipeline GitOps moderno com ArgoCD.
+
+
 
