@@ -34,7 +34,11 @@ e ArgoCD para entrega contínua em Kubernetes local com Rancher Desktop.
 
 5 - dentro do arquivo main.py digite o seguinte código:
 
+____________________________________________________________________________________________________________________________________________________________________________
+
 ![foto do main.py](fotosProjeto4/codigoMain.png)
+
+____________________________________________________________________________________________________________________________________________________________________________
 
 6- dentro do arquivo requirements.txt digite: ```fastapi uvicorn```
 
